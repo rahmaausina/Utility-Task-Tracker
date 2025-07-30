@@ -520,10 +520,24 @@ function renderTasks() {
 function exportToExcel() {
     const rows = [];
 
-    // Header row for the Excel sheet
-    const headers = ["Report No.", "Tank No.", "Task Type", "Process Name", "Chemical Used", "Result", "Created At", "Status"];
+    const headers = [
+        "Report No.",
+        "Tank No.",
+        "Task Type",
+        "Process Name",
+        "Chemical Used",
+        "Result",
+        "Product Name",
+        "Quantity",
+        "Tank Description",
+        "Parameter",
+        "Chemical Added",
+        "Addition Recommendation",
+        "Created At",
+        "Status"
+    ];
     rows.push(headers);
-    // Collect data from the taskList for each field
+
     taskList.forEach(task => {
         const row = [
             task.reportNo || "-",
@@ -532,16 +546,21 @@ function exportToExcel() {
             task.processName || "-",
             task.chemicalUsed || "-",
             task.result || "-",
+            task.productName || "-",
+            task.quantity || "-",
+            task.tankDescription || "-",
+            task.parameter || "-",
+            task.chemicalAdded || "-",
+            task.additionRecommendation || "-",
             task.createdAt || "-",
             task.status || "-"
         ];
         rows.push(row);
     });
-    // Convert data to Excel format
+
     const ws = XLSX.utils.aoa_to_sheet(rows);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Tasks");
-    // Save the Excel file
     XLSX.writeFile(wb, "TaskData.xlsx");
 }
 
