@@ -253,6 +253,16 @@
         <button onclick="openTaskForm('Dumpoff')">+ Add Dumpoff</button>
     </div>
 
+<div style="margin-bottom: 10px;">
+  <input type="text" id="search-input" placeholder="Search..." style="padding: 6px; width: 200px;" />
+  <select id="status-filter" style="padding: 6px;">
+    <option value="all">All Statuses</option>
+    <option value="waiting for execution">Waiting for Execution</option>
+    <option value="waiting for verify">Waiting for Verify</option>
+    <option value="completed">Completed</option>
+  </select>
+</div>
+    
     <div id="task-list"></div>
 
     <div class="export-section">
