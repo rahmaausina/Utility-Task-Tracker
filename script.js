@@ -194,7 +194,7 @@ function saveTask() {
     }
     
     closeTaskForm();
-    renderTasks();
+    renderFilteredTasks();
     
     localStorage.setItem("taskList", JSON.stringify(taskList));
 }
@@ -266,7 +266,7 @@ function saveAddition() {
     task.status = "waiting for verify";
     localStorage.setItem("taskList", JSON.stringify(taskList));
     closeAdditionModal();
-    renderTasks();
+    renderFilteredTasks();
 }
 
 function saveVerification() {
@@ -285,7 +285,7 @@ function saveVerification() {
     task.status = "completed";
     localStorage.setItem("taskList", JSON.stringify(taskList));
     closeVerificationModal();
-    renderTasks();
+    renderFilteredTasks();
 }
 
 function closeAdditionModal() {
@@ -466,20 +466,20 @@ function printTask(id) {
     printWindow.print();
 }
 
-function renderTasks() {
+function renderTasks(list = taskList) {
     const taskListContainer = document.getElementById("task-list");
     taskListContainer.innerHTML = "";
 
-    // Show all tasks including completed ones
-    if (taskList.length === 0) {
+    if (list.length === 0) {
         taskListContainer.innerHTML = "<p style='text-align: center; color: #666;'>No tasks found.</p>";
         return;
     }
 
-    taskList.forEach(task => {
+    list.forEach(task => {
         const card = document.createElement("div");
         card.className = "task-card";
         const statusClass = task.status.replace(/\s+/g, '-');
+
         card.innerHTML = `
             <div class="task-header">
                 <div class="task-title">${task.type} - ${task.tankNo}</div>
@@ -504,14 +504,14 @@ function renderTasks() {
                 <p><strong>Created:</strong> ${task.createdAt}</p>
             </div>
             <div class="task-actions">
-    <button class="btn-edit" onclick="editTask(${task.id})">Edit</button>
-    ${task.status === "waiting for execution" ? 
-        `<button class="btn-complete" onclick="markComplete(${task.id})">Complete</button>` : ""}
-    ${task.status === "waiting for verify" ? 
-        `<button class="btn-verify" onclick="openVerification(${task.id})">Verify</button>` : ""}
-    <button class="btn-print" onclick="printTask(${task.id})">Print</button>
-    <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
-</div>
+                <button class="btn-edit" onclick="editTask(${task.id})">Edit</button>
+                ${task.status === "waiting for execution" ? 
+                    `<button class="btn-complete" onclick="markComplete(${task.id})">Complete</button>` : ""}
+                ${task.status === "waiting for verify" ? 
+                    `<button class="btn-verify" onclick="openVerification(${task.id})">Verify</button>` : ""}
+                <button class="btn-print" onclick="printTask(${task.id})">Print</button>
+                <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+            </div>
         `;
         taskListContainer.appendChild(card);
     });
@@ -614,5 +614,5 @@ function deleteTask(id) {
 
     taskList = taskList.filter(task => task.id !== id);
     localStorage.setItem("taskList", JSON.stringify(taskList));
-    renderTasks();
+    renderFilteredTasks();
 }
