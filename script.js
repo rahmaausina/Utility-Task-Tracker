@@ -195,6 +195,8 @@ function saveTask() {
     
     closeTaskForm();
     renderTasks();
+    
+    localStorage.setItem("taskList", JSON.stringify(taskList));
 }
 
 function populateTaskForm(task) {
@@ -240,6 +242,7 @@ function closeTaskForm() {
 function markComplete(id) {
     currentTaskId = id;
     document.getElementById("addition-modal").style.display = "block";
+    localStorage.setItem("taskList", JSON.stringify(taskList));
 }
 
 function openVerification(id) {
@@ -261,6 +264,7 @@ function saveAddition() {
     };
     
     task.status = "waiting for verify";
+    localStorage.setItem("taskList", JSON.stringify(taskList));
     closeAdditionModal();
     renderTasks();
 }
@@ -279,6 +283,7 @@ function saveVerification() {
     };
     
     task.status = "completed";
+    localStorage.setItem("taskList", JSON.stringify(taskList));
     closeVerificationModal();
     renderTasks();
 }
@@ -543,3 +548,19 @@ function exportToExcel() {
 document.addEventListener('DOMContentLoaded', function() {
     renderTasks();
 });
+
+window.onload = function () {
+    const savedTasks = localStorage.getItem("taskList");
+    if (savedTasks) {
+        taskList = JSON.parse(savedTasks);
+        renderTasks();
+    }
+};
+
+function clearAllTasks() {
+    if (confirm("Are you sure you want to delete all tasks?")) {
+        taskList = [];
+        localStorage.removeItem("taskList");
+        renderTasks();
+    }
+}
