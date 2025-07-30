@@ -406,7 +406,8 @@ function printTask(id) {
             </head><body>
                 <table>
                     <tr>
-                        <td colspan="2" style="border:none; font-weight:bold; font-size: 20px;">JABIL</td>
+                
+                        <td colspan="2" class="logo; font-weight:bold; font-size: 20px;">JABIL</td>
                         <td colspan="5" class="header">${task.type.toUpperCase()} RECORD</td>
                     </tr>
                     <tr><td>Report No:</td><td colspan="6">${task.reportNo || ""}</td></tr>
