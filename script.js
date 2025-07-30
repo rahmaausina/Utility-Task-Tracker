@@ -488,8 +488,8 @@ function renderTasks() {
                     <p><strong>Chemical Used:</strong> ${task.chemicalUsed || '-'}</p>
                     <p><strong>Result:</strong> ${task.result || '-'}</p>
                     <p><strong>Addition Made:</strong></p>
-                    <p><strong>Product: ${task.productName || '-'}</p>
-                    <p><strong>Quantity: ${task.quantity || '-'}</p>
+                    <p><strong>Product:</strong> ${task.productName || '-'}</p>
+                    <p><strong>Quantity:</strong> ${task.quantity || '-'}</p>
                 ` : `
                     <p><strong>Tank Description:</strong> ${task.tankDescription || '-'}</p>
                     <p><strong>Parameter:</strong> ${task.parameter || '-'}</p>
