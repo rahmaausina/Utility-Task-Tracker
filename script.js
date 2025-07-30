@@ -588,17 +588,18 @@ function exportToExcel() {
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
     renderTasks();
-    document.getElementById("search-input").addEventListener("input", renderFilteredTasks);
-document.getElementById("status-filter").addEventListener("change", renderFilteredTasks);
-
-});
+    });
 
 window.onload = function () {
     const savedTasks = localStorage.getItem("taskList");
     if (savedTasks) {
         taskList = JSON.parse(savedTasks);
-        renderTasks();
     }
+
+    renderFilteredTasks(); // bukan renderTasks()
+
+    document.getElementById("search-input").addEventListener("input", renderFilteredTasks);
+    document.getElementById("status-filter").addEventListener("change", renderFilteredTasks);
 };
 
 function clearAllTasks() {
