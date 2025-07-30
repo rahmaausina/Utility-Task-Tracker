@@ -510,6 +510,7 @@ function renderTasks() {
                 ${task.status === "waiting for verify" ? 
                     `<button class="btn-verify" onclick="openVerification(${task.id})">Verify</button>` : ""}
                 <button class="btn-print" onclick="printTask(${task.id})">Print</button>
+                <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
             </div>
         `;
         taskListContainer.appendChild(card);
@@ -563,4 +564,12 @@ function clearAllTasks() {
         localStorage.removeItem("taskList");
         renderTasks();
     }
+}
+
+function deleteTask(id) {
+    if (!confirm("Are you sure you want to delete this task?")) return;
+
+    taskList = taskList.filter(task => task.id !== id);
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    renderTasks();
 }
