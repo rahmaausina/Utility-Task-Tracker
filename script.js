@@ -517,6 +517,27 @@ function renderTasks() {
     });
 }
 
+function renderFilteredTasks() {
+    const searchQuery = document.getElementById("search-input").value.toLowerCase();
+    const statusFilter = document.getElementById("status-filter").value;
+
+    const filteredTasks = taskList.filter(task => {
+        const matchesSearch =
+            task.reportNo?.toLowerCase().includes(searchQuery) ||
+            task.tankNo?.toLowerCase().includes(searchQuery) ||
+            task.processName?.toLowerCase().includes(searchQuery) ||
+            task.chemicalUsed?.toLowerCase().includes(searchQuery) ||
+            task.tankDescription?.toLowerCase().includes(searchQuery) ||
+            task.parameter?.toLowerCase().includes(searchQuery);
+
+        const matchesStatus = (statusFilter === "all") || (task.status === statusFilter);
+
+        return matchesSearch && matchesStatus;
+    });
+
+    renderTasks(filteredTasks);
+}
+
 function exportToExcel() {
     const rows = [];
 
@@ -567,6 +588,9 @@ function exportToExcel() {
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
     renderTasks();
+    document.getElementById("search-input").addEventListener("input", renderFilteredTasks);
+document.getElementById("status-filter").addEventListener("change", renderFilteredTasks);
+
 });
 
 window.onload = function () {
