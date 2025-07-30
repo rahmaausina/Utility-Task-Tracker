@@ -504,14 +504,14 @@ function renderTasks() {
                 <p><strong>Created:</strong> ${task.createdAt}</p>
             </div>
             <div class="task-actions">
-                <button class="btn-edit" onclick="editTask(${task.id})">Edit</button>
-                ${task.status === "waiting for execution" ? 
-                    `<button class="btn-complete" onclick="markComplete(${task.id})">Complete</button>` : ""}
-                ${task.status === "waiting for verify" ? 
-                    `<button class="btn-verify" onclick="openVerification(${task.id})">Verify</button>` : ""}
-                <button class="btn-print" onclick="printTask(${task.id})">Print</button>
-                <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
-            </div>
+    <button class="btn-edit" onclick="editTask(${task.id})">Edit</button>
+    ${task.status === "waiting for execution" ? 
+        `<button class="btn-complete" onclick="markComplete(${task.id})">Complete</button>` : ""}
+    ${task.status === "waiting for verify" ? 
+        `<button class="btn-verify" onclick="openVerification(${task.id})">Verify</button>` : ""}
+    <button class="btn-print" onclick="printTask(${task.id})">Print</button>
+    <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+</div>
         `;
         taskListContainer.appendChild(card);
     });
