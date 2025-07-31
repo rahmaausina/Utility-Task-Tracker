@@ -372,6 +372,10 @@ function printTask(id) {
                     <tr><td>Remarks (if any)</td><td colspan="3">${task.verification?.remarks || "-"}</td></tr>
                     <tr><td>Review By</td><td colspan="3">${task.verification?.reviewBy || "-"}</td></tr>
                 </table>
+<p style="text-align: left; font-weight: bold; margin-top: 30px;">
+  52-LB80-SP-ST-00002
+</p>
+
             </body></html>
         `;
     } else {
@@ -457,6 +461,11 @@ function printTask(id) {
                     <tr><td>Remarks (if any)</td><td colspan="6">${task.verification?.remarks || "-"}</td></tr>
                     <tr><td>Review By</td><td colspan="6">${task.verification?.reviewBy || "-"}</td></tr>
                 </table>
+
+<p style="text-align: left; font-weight: bold; margin-top: 30px;">
+  52-LB80-SP-ST-00018
+</p>
+                
             </body></html>
         `;
     }
