@@ -244,6 +244,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 
+    <div id="correction-modal" style="display: none; position: fixed; top: 30%; left: 40%; background: white; padding: 20px; border: 1px solid #ccc; z-index: 9999;">
+        <h3>Leader Correction</h3>
+        <label for="correctionName">Corrected By:</label><br>
+        <input type="text" id="correctionName"><br><br>
+        <button onclick="submitCorrection()">Submit</button>
+        <button onclick="closeCorrectionModal()">Cancel</button>
+    </div>
+    
 <body>
     <h1>Task Management System</h1>
 
@@ -416,6 +424,69 @@
         </div>
     </div>
 
+    <!-- Leader Correction Modal -->
+    <!-- Leader Correction Modal -->
+    <div id="leader-correction-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Leader Correction</h3>
+          <span class="close" onclick="closeLeaderCorrectionModal()">&times;</span>
+        </div>
+        <div class="form-group">
+          <label for="addProductName">Product Name:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="text" id="addProductName-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="product-name-correction" onchange="toggleCorrection('product-name')" style="margin-left: 10px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addQuantity">Quantity:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="text" id="addQuantity-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="quantity-correction" onchange="toggleCorrection('quantity')" style="margin-left: 10px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addBatchNo">Batch No.:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="text" id="addBatchNo-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="batch-no-correction" onchange="toggleCorrection('batch-no')" style="margin-left: 10px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addExpiryDate">Expiry Date:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="date" id="addExpiryDate-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="expiry-date-correction" onchange="toggleCorrection('expiry-date')" style="margin-left: 10px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addDateTime">Addition Date & Time:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="datetime-local" id="addDateTime-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="date-time-correction" onchange="toggleCorrection('date-time')" style="margin-left: 10px;">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="addOperatorName">Operator Name:</label>
+          <div style="display: flex; align-items: center;">
+            <input type="text" id="addOperatorName-correction" value="" disabled style="width: 80%;">
+            <input type="checkbox" id="operator-name-correction" onchange="toggleCorrection('operator-name')" style="margin-left: 10px;">
+          </div>
+
+            <label>
+                Nama Leader:
+                <input type="text" id="leaderNameInput" />
+              </label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-primary" onclick="saveLeaderCorrection()">Save Correction</button>
+          <button type="button" class="btn-secondary" onclick="closeLeaderCorrectionModal()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    
     <!-- Verification Modal -->
     <div id="verification-modal" class="modal">
         <div class="modal-content">
